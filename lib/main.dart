@@ -1,3 +1,4 @@
+import 'package:fl_luckypet_app/pet_detail_page.dart';
 import 'package:fl_luckypet_app/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_luckypet_app/app_styles.dart';
@@ -24,6 +25,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -256,15 +258,24 @@ class HomeScreen extends StatelessWidget {
                   //Gambar
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: 80,
-                        width: 150,
-                        child: ClipRRect(
-                          borderRadius:
-                              BorderRadius.circular(kBoerderRaidusList),
-                          child: Image.asset(
-                            'assets/images/${dogs[index]}',
-                            fit: BoxFit.cover,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const PetDetailPage()),
+                          );
+                        },
+                        child: SizedBox(
+                          height: 80,
+                          width: 150,
+                          child: ClipRRect(
+                            borderRadius:
+                                BorderRadius.circular(kBoerderRaidusList),
+                            child: Image.asset(
+                              'assets/images/${dogs[index]}',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
